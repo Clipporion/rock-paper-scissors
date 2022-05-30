@@ -19,3 +19,20 @@ function playerGuess() {
             playerGuess();
         }
 }
+function playRound (player, computer) {
+    if (player == "rock" && computer == "paper") {
+    return "You lost!";
+    } else if (player == "rock" && computer == "scissors") {
+    return "You win";
+    } else if (player == "paper" && computer == "scissors") {
+    return "You lost!";
+    } else if (player == "paper" && computer == "rock") {
+    return "You win";
+    } else if (player == "scissors" && computer == "rock") {
+    return "You lost!";
+    } else if (player == "scissors" && computer == "paper") {
+    return "You win"
+    } else {
+    return "This was a draw";
+    }
+}
