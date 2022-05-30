@@ -21,17 +21,17 @@ function playerGuess() {
 }
 function playRound (player, computer) {
     if (player == "rock" && computer == "paper") {
-    return "You lost!";
+    return "You chose rock, computer chose paper. You lost!";
     } else if (player == "rock" && computer == "scissors") {
-    return "You win";
+    return "You chose rock, computer chose scissors. You win!";
     } else if (player == "paper" && computer == "scissors") {
-    return "You lost!";
+    return "You chose paper, computer chose scissors. You lost!";
     } else if (player == "paper" && computer == "rock") {
-    return "You win";
+    return "You chose paper, computer chose rock. You win!";
     } else if (player == "scissors" && computer == "rock") {
-    return "You lost!";
+    return "You chose scissors, computer chose rock. You lost!";
     } else if (player == "scissors" && computer == "paper") {
-    return "You win"
+    return "You chose scissors, computer chose rock. You win!"
     } else {
     return "This was a draw";
     }
