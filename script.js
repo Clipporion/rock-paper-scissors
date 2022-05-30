@@ -36,3 +36,11 @@ function playRound (player, computer) {
     return "This was a draw";
     }
 }
+
+function game() {
+    for (let i = 1; i <= 5; i++) {
+    x = playerGuess();
+    y = computerGuess();
+    console.log(playRound(x,y));
+    }
+    }
