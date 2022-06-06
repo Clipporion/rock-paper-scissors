@@ -1,3 +1,9 @@
+const buttons = document.querySelectorAll("button");
+const result = document.querySelector("#result");
+const score = document.querySelector("#score");
+let playerScore = 0;
+let computerScore = 0;
+
 function computerGuess() {
     guess = Math.floor(Math.random()*3+1);
     if (guess === 1) {
@@ -10,37 +16,34 @@ function computerGuess() {
     return guess;
 }
 
-function playerGuess() {
-        x = prompt("Rock, Paper or Scissors?").toLowerCase();
+function playRound (e) {
+    let computer = computerGuess();
+    let player = e.target.textContent.toLowerCase();
 
-        if (x == "rock" || x == "paper" || x == "scissors") {
-            return x;
-        } else {
-            playerGuess();
-        }
-}
-function playRound (player, computer) {
-    if (player == "rock" && computer == "paper") {
-    return "You chose rock, computer chose paper. You lost!";
-    } else if (player == "rock" && computer == "scissors") {
-    return "You chose rock, computer chose scissors. You win!";
-    } else if (player == "paper" && computer == "scissors") {
-    return "You chose paper, computer chose scissors. You lost!";
-    } else if (player == "paper" && computer == "rock") {
-    return "You chose paper, computer chose rock. You win!";
-    } else if (player == "scissors" && computer == "rock") {
-    return "You chose scissors, computer chose rock. You lost!";
-    } else if (player == "scissors" && computer == "paper") {
-    return "You chose scissors, computer chose rock. You win!"
+    if (player == "rock" && computer == "paper" ||
+        player == "paper" && computer == "scissors" ||
+        player == "scissors" && computer == "rock") {
+    computerScore += 1;
+    result.textContent = `You chose ${player.charAt(0).toUpperCase()+player.slice(1)}, computer chose ${computer.charAt(0).toUpperCase()+computer.slice(1)}. You lost!`;
+    score.textContent = `Player ${playerScore} : ${computerScore} Computer`;
+    } else if (player == "rock" && computer == "scissors" ||
+                player == "paper" && computer == "rock" ||
+                player == "scissors" && computer == "paper") {
+        playerScore += 1
+        result.textContent = `You chose ${player.charAt(0).toUpperCase()+player.slice(1)}, computer chose ${computer.charAt(0).toUpperCase()+computer.slice(1)}. You win!`;
+        score.textContent = `Player ${playerScore} : ${computerScore} Computer`;
     } else {
-    return "This was a draw";
+        result.textContent = `You chose ${player.charAt(0).toUpperCase()+player.slice(1)}, computer chose ${computer.charAt(0).toUpperCase()+computer.slice(1)}. This was a draw!`;
+        score.textContent = `Player ${playerScore} : ${computerScore} Computer`
+    }
+    if (playerScore === 5) {
+        alert(`You beat the computer and saved the world! You're the best!`)
+    } else if (computerScore === 5) {
+        alert(`You lost and the computer will take over the world!`)
     }
 }
 
-function game() {
-    for (let i = 1; i <= 5; i++) {
-    x = playerGuess();
-    y = computerGuess();
-    console.log(playRound(x,y));
-    }
-    }
+buttons.forEach(function(button) { 
+    button.addEventListener("click", playRound)
+}
+)
